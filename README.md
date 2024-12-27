@@ -8,3 +8,6 @@
 
 observação:
 caso queira, pode por um debugger na linha 227 do arquivo AutomacaoPonto.java  executar em modo debugger... assim você irá verificar se o tempo foi registrado corretamente
+
+!! importante !!
+- Antes de executar o script, lance as exceções manualmente (ferias, falta abonada, atestado medico e talz)
