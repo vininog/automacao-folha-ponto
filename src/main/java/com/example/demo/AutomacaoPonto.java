@@ -170,19 +170,15 @@ public class AutomacaoPonto implements CommandLineRunner {
             ((JavascriptExecutor) driver).executeScript("arguments[0].click();", dropdownButton);
             System.out.println("Botão do dropdown clicado com sucesso!");
 
-            Actions actions = new Actions(driver);
-            actions.moveToElement(dropdownButton).click().perform();
+            WebElement itemInserirMarcacao = wait.until(
+                    ExpectedConditions.visibilityOfElementLocated(
+                            By.xpath("//ul[contains(@class, 'dropdown-menu inner')]//span[text()='INSERIR MARCAÇÃO']/ancestor::a")
+                    )
+            );
+            itemInserirMarcacao.click();
+            System.out.println("Opção 'INSERIR MARCAÇÃO' selecionada diretamente!");
 
-            // Navega pelos itens usando a seta para baixo
-            for (int i = 0; i < 11; i++) {
-                actions.sendKeys(Keys.ARROW_DOWN).perform();
-                Thread.sleep(300);
-            }
-
-            // Pressiona Enter para selecionar o item desejado
-            actions.sendKeys(Keys.ENTER).perform();
-            System.out.println("Item do dropdown selecionado usando teclas de navegação!");
-
+            // Aguarda o título carregar
             wait.until(ExpectedConditions.textToBe(By.xpath("//*[@id='titulo']"), "INSERIR MARCAÇÃO"));
             System.out.println("Título 'INSERIR MARCAÇÃO' carregado com sucesso!");
 
@@ -195,6 +191,8 @@ public class AutomacaoPonto implements CommandLineRunner {
                 Thread.sleep(500);
             }
             System.out.println("Três campos de marcação adicionados com sucesso!");
+
+            Actions actions = new Actions(driver);
 
             // Preenche os campos de marcação usando elementos WebElement
             WebElement input1 = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id='addMarcacao']/div/div[1]/input[1]")));
