@@ -67,7 +67,7 @@ public class AutomacaoPonto implements CommandLineRunner {
      * Realiza o login na aplicação.
      */
     private void realizarLogin() {
-        driver.get("https://castgroup.izeus.com.br/ponto");
+        driver.get("https://cast.izeus.com.br/ponto");
         System.out.println("Página de login acessada com sucesso!");
 
         WebElement userInput = wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("usuid")));
